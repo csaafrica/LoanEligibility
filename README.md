@@ -1,1 +1,3 @@
 # LoanEligibility
+ Dataset Overview
+ You have been provided with the following customer data in loan_data.csv. The features include:- Loan_ID - Unique loan ID- Gender - Male/Female- Married - Applicant's marital status- Dependents - Number of dependents- Education - Applicant education level- Self_Employed - Whether self-employed- ApplicantIncome - Applicant's income- CoapplicantIncome - Co-applicant's income- LoanAmount - Loan amount in thousands- Loan_Amount_Term - Term of loan in months- Credit_History - Applicant credit history (1 = good, 0 = bad)- Property_Area - Urban/Semiurban/Rural- Loan_Status - Target variable (Y = Approved, N = Not Approved)
