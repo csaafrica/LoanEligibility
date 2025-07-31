@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loan Result</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 0;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(243, 235, 227, 0.85); /* translucent light brown */
+            background-image: url("/static/images/bg_result.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1; /* behind everything */
+        }
+
+        h1, h2, p, li {
+            color: #3e2a1d;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .result-box {
+            background-color: rgba(210, 180, 140, 0.95); /* tan with slight transparency */
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .prediction {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background-color: #fff6e5;
+            padding: 15px;
+            border-radius: 10px;
+            color: #2f1b0c;
+            margin-top: 15px;
+        }
+
+        .back-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #8b5e3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background-color: #6f4e37;
+        }
+
+        .reason-badge {
+            background-color: #5c4033;
+            color: white;
+        }
+
+        .reasons {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .reasons ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .reasons li {
+            background-color: #fdf9f3;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-left: 5px solid #5c4033;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-box">
+        <h2>Loan Prediction Result</h2>
+        <p class="prediction">{{ prediction }}</p>
+        <p>Model confidence: {{ confidence }}</p>
+
+        {% if reasons %}
+        <div class="reasons">
+            <h5>Top Reasons:</h5>
+            <ul>
+                {% for item in reasons %}
+                <li>
+                    <strong>{{ item.Feature }}</strong> ({{ item.Value }}) – 
+                    <span class="reason-badge">{{ '%.2f' | format(item.Contribution) }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <a class="back-btn" href="/">Check another applicant</a>
+    </div>
+</body>
+</html>
